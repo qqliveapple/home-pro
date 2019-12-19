@@ -1,0 +1,50 @@
+git 命令总结：
+1.git init （初始化仓库命令，将当前目录初始化为git目录，可以在后面添加需要设置为目录的路径，如 git ini /e/data/git）
+2.git pwd （查看当前路径命令）
+3.git add <file>（添加文件命令，当前添加将文件存到git目录的缓存区或叫索引去，并未添加到本地版本库中）
+4.git commit -m <message> （提交命令，该命令是将添加的文件提交到本地版本库中）
+5.git log（查看提交日志命令，该命令可以查看用户所有提交日志，但不能显示回退前的日志,git log --graph 可以看到分支合并图）
+6.git status（查看git状态命令）
+7.git diff <file> （查看文件与上个版本不同的地方）
+8.git reset --hard <commit id> （回退命令，回退到指定版本号，也可以把缓存区的修改撤销掉。HEAD指当前版本号，HEAD^上一个版本，HEAD^^上上个版本，往前第100个版本可以用HEAD~100）
+9.git relog（查看提交的命令日志，该命令可以查看用户回退前的日志）
+10.git checkout --<file> （撤销到最近一次git add 或git commit命令执行后的状态）
+11.git rm <file> （删除文件，该命令执行后需要提交）
+12 git remote add origin <git address>
+13 git push -u origin master （将本地仓库推送到远程仓库，并将两个仓库关联，一般第一次推送时使用）
+14 git push origin mater （将本地仓库修改内容推送到远程仓库）
+15 git clone <git address> （克隆远程仓库到本地）
+16 git branch （查看分支）
+17 git branch <branch name> （创建分支）
+18 git switch <branch name> 和 git checkout <branch name>（切换分支）
+19 git switch -c <branch name>和 git checkout -b <branch name>（创建并切换到指定分支)
+20 git merge <branch name> （合并指定分支到本分支上，git merge --no-ff -m "message" <branch name> 禁用fast forward，可以看到合并分支历史信息）
+21 git branch -d <branch name> （删除指定分支）
+22 git branch -D <branch name> （强制删除指定分支）
+23 git stash （保存当前分支现状到临时文件中）
+24 git stash list （查看当前临时文件中保存的所有内容）
+25 git stash apply <标识>（恢复现状到当前分支，但保存的内容留存）
+26 git stash drop <标识>（删除保存的内容）
+27 git stash pop  （恢复现状到当前分支，保存内容删除）
+28 git cherry-pick <commit> （将之前提交的修改合并到当前分支上）
+29 git remote 和git remote -v（查看远程仓库信息）
+30 git push origin <branch name> 推送自己分支到远程仓库
+31 git pull （将远程提交内容合并到本地分支）
+32 git branch --set-upstream-to <branch name> origin/<branch name> （将本地分支与远程分支链接，一般用于解决git pull提示no tranck information问题）
+33 git tag （查看标签）
+34 git tag <name> <commit id>（给分支创建标签，如 git tag v1.0给当前版本打标签，git tag v0.9 f52c633给commit ID为f52c633的提交打上v0.9的tag）
+35 git tag -a <name> -m "message" <commit id> （给分支创建标签并添加说明）
+36 git show <tagname> （查看指定标签信息）
+37 git tag -d <name> （删除标签）
+38 git push origin <tagname> （推送标签到远程仓库，如git push origin v1.0）
+39 git push origin --tags（推送所有未提交的标签）
+40 git push origin :ref/tags/name （删除远程标签，如git push origin :ref/tags/v0.9）
+41 fork （复制一个开源仓库到自己github仓库）
+42 pull request（向开源仓库提交自己的修改，接受与否看对方）
+43 git remote rm origin （删除远程库）
+
+
+如果想把修改撤销，操作步骤：
+1.当修改未提交到缓存区时，使用git checkout --file 撤销
+2.当修改提交到缓存区，但没有提交到分支，使用git reset --hard HEAD回退到分支当前版本
+3.当修改已提交到分支，使用回退命令返回到上一个版本
